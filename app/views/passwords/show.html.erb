@@ -7,13 +7,27 @@
     </svg>
     <% end %>
   </h1>
-<%= link_to "Edit", edit_password_path %>
+  <div>
+    <%= link_to "Edit", edit_password_path %>
+  </div>
 </div>
 
 <h6>Username / Email </h6>
-<div class="flex gap-1">
-  <pre class="mt-0"><code><%= @password.username %></code></pre>
-  <%= button_tag "Copy", data: {controller: "clipboard", clipboard_content_value: @password.username } %>
+<div class="flex items-center align-middle">
+  <pre class="mt-0 mb-0 flex-grow"><code><%= @password.username %></code></pre>
+    <%= button_tag "Copy", class:"px-2 py-1 bg-gray-200 rounded ml-5",data: {controller: "clipboard",action: "clipboard#copy", clipboard_content_value: @password.username } %>
+  </div>
 </div>
-<h6 class="mb-1">Password</h6>
-<pre class="mt-0"><code><%= @password.password %></code></pre>
+
+<h6 class="mb-1 mt-5">Password</h6>
+<div class="flex items-center align-middle">
+  <pre class="mt-0 mb-0 flex-grow"><code><%= @password.password %></code></pre>
+    <%= button_tag "Copy", class:"px-2 py-1 bg-gray-200 rounded ml-5",data: {controller: "clipboard",action: "clipboard#copy", clipboard_content_value: @password.password } %>
+  </div>
+</div>
+
+<h4>
+Share
+</h4>
+
+<%= link_to "Add a user", new_password_share_path(@password) %>
